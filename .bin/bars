@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# Terminate already running bar instances
+killall -q lemonbuddy
+
+# Wait until the processes have been shut down
+while pgrep -x lemonbuddy >/dev/null; do sleep 1; done
+
+if [[ "$1" == "kill" ]]; then
+    exit
+fi
+
+if xrandr | grep "HDMI1 connected" > /dev/null; then
+    lemonbuddy left_bar &
+    lemonbuddy right_bar &
+else
+    lemonbuddy laptop_bar &
+fi

@@ -1,0 +1,188 @@
+#!/bin/env python
+
+from terminaltables import SingleTable
+import requests
+import arrow
+import textwrap
+import pprint
+import math
+import argparse
+import os
+
+class AniChart_Airing():
+    def __init__(self):
+        self.API_URL = 'http://anichart.net/api/chart/airing'
+        
+    def fetch_data(self):
+        request = requests.get(self.API_URL)
+        return request.json()
+
+    def parse_week_day(self, animes, weekday=-1, limit=0):
+        if weekday not in range(-1, 7):
+            print('Invaild weekday.')
+            exit(0)
+
+        anime_data = [
+            [], # 0 - Mon
+            [], # 1 - Tue
+            [], # 2 - Wed
+            [], # 3 - Thu
+            [], # 4 - Fri
+            [], # 5 - Sat
+            [], # 6 - Sun
+        ]
+        for anime in animes:
+            if limit > 0:
+                limit_seconds = 86400 * limit
+                if anime['airing']['countdown'] > limit_seconds:
+                    continue
+            time = arrow.get(anime['airing']['time']).to('Asia/Ho_Chi_Minh')
+            anime_data[time.weekday()].append(anime)
+
+        # Sort anime before return anime list data
+        if weekday == -1:
+            for weekday in range(7):
+                anime_data[weekday] = self.sort_anime(anime_data[weekday])
+            return anime_data
+        else:
+            return self.sort_anime(anime_data[weekday])
+
+    def print_week_table(self, anime_data):
+        anime_table_data = [
+            [
+                self.color_print('Monday', 111),
+                self.color_print('Tuesday', 111),
+                self.color_print('Wednesday', 111),
+                self.color_print('Thursday', 111),
+                self.color_print('Friday', 111),
+                self.color_print('Saturday', 111),
+                self.color_print('Sunday', 111),
+            ],
+        ]
+        i = 0
+        _continue = True
+        while True:
+            _continue = False
+            week_data = []
+            for weekday in range(7):
+                if len(anime_data[weekday]) > i:
+                    _continue = True
+                    _anime = anime_data[weekday][i]
+
+                    title = textwrap.shorten(_anime['title_romaji'], width=25, placeholder='...')
+                    title = self.color_print(title, 110)
+
+                    time = arrow.get(_anime['airing']['time']).to('Asia/Ho_Chi_Minh').format('hh:mm a')
+
+                    episode = str(_anime['airing']['next_episode'])
+                    episode = self.color_print(episode, 244)
+
+                    countdown = self.format_countdown(_anime['airing']['countdown'])
+                    countdown = self.color_print(countdown, 244)
+
+                    week_data.append('%s\n%s%s%s%s\n' % (title, self.color_print("ep: ", 250) , episode, self.color_print(" / ", 250) , countdown))
+                else:
+                    week_data.append("\n")
+            if _continue == False:
+                break
+            anime_table_data.append(week_data)
+            i = i + 1
+        table = SingleTable(anime_table_data)
+        table.inner_heading_row_border = True
+        print(table.table)
+
+    def print_weekday_table(self, anime_data, title=''):
+        anime_table_data = [
+            ['Airing Time', 'Anime', 'Next Episode', 'Countdown']
+        ]
+        for anime in anime_data:
+            _time = arrow.get(anime['airing']['time']).to('Asia/Ho_Chi_Minh').format('hh:mm A')
+            _title= anime['title_romaji']
+            _episode = str(anime['airing']['next_episode'])
+            _countdown = self.format_countdown(anime['airing']['countdown'])
+            anime_table_data.append([_time, _title, _episode, _countdown])
+        table = SingleTable(anime_table_data)
+        if title != '':
+            table.title = title
+        table.inner_row_border = True
+        print(table.table)
+
+    # Sort anime list base on countdown time
+    def sort_anime(self, anime_data):
+        anime_data.sort(key=lambda a: a['airing']['countdown'])
+        return anime_data
+
+    def format_countdown(self, seconds):
+        minutes, seconds = divmod(seconds, 60)
+        hours, minutes = divmod(minutes, 60)
+        days, hours = divmod(hours, 24)
+
+        if(days > 0):
+            return str(days) + 'd ' + str(hours) + 'h ' + str(minutes) + 'm'
+        elif (hours > 0):
+            return str(hours) + 'h ' + str(minutes) + 'm'
+        else:
+            return str(minutes) + 'm'
+
+    def color_print(self, text, color, rt=True):
+        _text = str(text)
+        _fg = str(color)
+        formatted_text ='\x1b[38;05;%sm%s\x1b[0m' % (_fg, _text)
+        if rt == False:
+            print(formatted_text)
+        else:
+            return formatted_text
+
+def main():
+    weekday = {
+        0: 'Monday',
+        1: 'Tuesday',
+        2: 'Wednesday',
+        3: 'Thursday',
+        4: 'Friday',
+        5: 'Saturday',
+        6: 'Sunday'
+    }
+    parser = argparse.ArgumentParser(description='anichar airing cli')
+    parser.add_argument('-a', '--airing',
+            dest='date',
+            default=-1,
+            type=int,
+            help='enter a number represent for weekday 0 - 6 (Mon - Sun)'
+            )
+
+    parser.add_argument('-t', '--today',
+            action='store_true',
+            help='show today anime'
+            )
+
+    parser.add_argument('-l', '--limit',
+            action='store_true',
+            help='only display anime will be airing in next 7 days'
+            )
+
+    parser.add_argument('-c', '--clear',
+            action='store_true',
+            help='clear screen before show output'
+            )
+
+    args = parser.parse_args()
+    anichart = AniChart_Airing()
+    
+    limit_day = 0 if args.limit == False else 7
+    if args.today:
+        args.date = arrow.now().weekday()
+
+    fetched_data = anichart.fetch_data()
+    sorted_data = anichart.parse_week_day(fetched_data, args.date, limit_day)
+
+    if args.clear:
+        os.system('clear')
+
+    if args.date == -1:
+        anichart.print_week_table(sorted_data)
+    else:
+        anichart.print_weekday_table(sorted_data)
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,2 @@
+#!/bin/env sh
+st -f "FantasqueSansMono Nerd Font:size=11:antialias=true:autohint=true" -t "My IDE" -c "neovim" -e bash -c "nvim $@" > /dev/null 2>&1 &

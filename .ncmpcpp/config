@@ -1,0 +1,126 @@
+# Music visualizer
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum" (spectrum/wave)
+visualizer_look = "+│"
+
+# Song format
+# Available placeholders for song formats:
+# %l - length
+# %f - filename
+# %D - directory
+# %a - artist
+# %A - album artist
+# %t - title
+# %b - album
+# %y - date
+# %n - track number (01/12 -> 01)
+# %N - full track info (01/12 -> 01/12)
+# %g - genre
+# %c - composer
+# %p - performer
+# %d - disc
+# %C - comment
+# %P - priority
+# $R - begin right alignment
+#
+# You can also put them in { } and then it will be displayed
+# only if all requested values are available and/or define alternate
+# value with { }|{ } eg. {%a - %t}|{%f}
+#
+# Note: Format that is similar to "%a - %t" (i.e. without any additional
+# braces) is equal to "{%a - %t}", so if one of the tags is missing,
+# you'll get nothing.
+#
+# Text can also have different color than the main window has,
+# eg. if you want length to be green, write $3%l$9
+#
+# Available values:
+# - 0 - default window color (discards all other colors)
+# - 1 - black
+# - 2 - red
+# - 3 - green
+# - 4 - yellow
+# - 5 - blue
+# - 6 - magenta
+# - 7 - cyan
+# - 8 - white
+# - 9 - end of current color
+# - b - bold text
+# - u - underline text
+# - r - reverse colors
+# - a - use alternative character set
+#
+# If you don't want to use a non-color attribute anymore, just put it
+# again, but this time insert character '/' between '$' and attribute
+# character, e.g. {$b%t$/b}|{$r%f$/r} will display bolded title tag
+# or filename with reversed colors.
+#
+# If you want to use 256 colors and/or background colors in formats
+# (the naming scheme is described below in section about color
+# definitions), it can be done with the syntax $(COLOR), e.g. to set
+# the artist tag to one of the non-standard colors and make it have
+# yellow background, you need to write $(197_yellow)%a$(end). Note
+# that for standard colors this is interchangable with attributes
+# listed above.
+#
+# Note: colors can be nested.
+#
+
+# Column settings
+
+# Syntax of song columns list format is "column column etc."
+#
+# - syntax for each column is:
+#
+# (width of column)[column's color]{displayed tag}
+#
+# Note: Width is by default in %, if you want a column to
+# have fixed size, add 'f' after the value, e.g. (10)[white]{a}
+# will be the column that take 10% of screen (so the real column's
+# width will depend on actual screen size), whereas (10f)[white]{a}
+# will take 10 terminal cells, no matter how wide the screen is.
+#
+# - color is optional (if you want the default one, type [])
+#
+# Note: You can give a column additional attributes by putting appropriate
+# character after displayed tag character. Available attributes are:
+#
+# - r - column will be right aligned
+# - E - if tag is empty, empty tag marker won't be displayed
+#
+# You can also:
+#
+# - give a column custom name by putting it after attributes,
+#   separated with character ':', e.g. {lr:Length} gives you
+#   right aligned column of lengths named "Length".
+#
+# - define sequence of tags, that have to be displayed in case
+#   predecessor is empty in a way similar to the one in classic
+#   song format, i.e. using '|' character, e.g. {a|c|p:Owner}
+#   creates column named "Owner" that tries to display artist
+#   tag and then composer and performter if previous ones are
+#   not available.
+#
+
+song_columns_list_format = (1f)[red]{} (10f)[white]{l} (20)[white]{a} (40)[white]{f|t} (20)[white]{brE} (1f)[red]{}
+now_playing_prefix = $b
+now_playing_suffix = $/b
+# Bars
+song_status_format = "{%t - %a}|{%f}"
+#progressbar_look = "─  "
+progressbar_look = "─╼─"
+titles_visibility = "no"
+display_bitrate = yes
+
+
+browser_display_mode = columns
+playlist_display_mode = columns
+search_engine_display_mode = columns
+playlist_editor_display_mode = classic
+
+# Available values: help, playlist, browser, search_engine,
+# media_library, playlist_editor, tag_editor, outputs, visualizer, clock
+screen_switcher_mode = playlist,browser,media_library,visualizer,clock

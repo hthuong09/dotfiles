@@ -1,0 +1,18 @@
+#!/bin/sh
+
+wid=$1
+class=$2
+instance=$3
+title=$(xtitle "$wid")
+echo -ne "id $wid\nclass $class\ninst $instance\ntitle $title\n" >> /tmp/extout.txt
+
+case "$instance" in
+    mpd_cava)
+        echo "floating = on"
+        xdotool windowmove $wid 0 0
+        ;;
+    floating_ranger)
+        echo "floating = on"
+        ;;
+esac
+

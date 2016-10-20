@@ -1,0 +1,113 @@
+#!/usr/bin/bash
+
+
+#                                            ██
+#                                           ░██
+#   ██████  ██████  █████  ██████  ██████  ██████
+#  ██░░░░  ██░░░░  ██░░░██░░██░░█ ██░░░░██░░░██░
+# ░░█████ ░░█████ ░██  ░░  ░██ ░ ░██   ░██  ░██
+#  ░░░░░██ ░░░░░██░██   ██ ░██   ░██   ░██  ░██
+#  ██████  ██████ ░░█████ ░███   ░░██████   ░░██
+# ░░░░░░  ░░░░░░   ░░░░░  ░░░     ░░░░░░     ░░
+#
+
+source "sscrot-conf"
+
+IMGUR_UPLOAD_URL="https://api.imgur.com/3/image"
+ALBUM_ID="Pj1B5"
+
+# default settings
+save_path="$HOME/media/pictures/screenshots"
+selection=0
+upload=0
+quality=75
+temporary=0
+
+usage() {
+    #
+    # -s --selection = selection upload
+    # -p --path = path to save file, if path is not vaild then use default path $HOME/Pictures/Screenshots
+    # -u --upload = upload file to imgur (save file to /tmp and delete after uploaded successfully.)
+    # -q --quality # default = 100
+    # -h --help
+    echo "Small script that takes screenshot with scrot then upload them to imgur" >&2
+    echo "Usage: $(basename $0) [OPTION]"
+}
+
+upload_imgur() {
+    path="$1"
+    response=$(curl -sH POST https://api.imgur.com/3/image \
+        --header "Authorization: Bearer $ACCESS_TOKEN" \
+        --form "image=@$path" \
+        --form album="$ALBUM_ID")
+    echo $response
+    if $(echo $response | grep -qo '"status":200'); then
+        link=$(echo $response | sed -e 's/.*"link":"\([^"]*\).*/\1/' -e 's/\\//g')
+        echo -n $link | xclip -i -selection clipboard
+        notify-send "sscrot" "Image uploaded imgur. Link was copied to clipboard"
+    else
+        notify-send "sscrot" "Upload failed"
+    fi
+}
+
+#if [ -z "$1" ] ; then
+#    echo "No arguments"123
+
+#fi
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -s | --selection )
+            selection=1
+        ;;
+        -p=* | --path=* )
+            save_path=${1#*=}
+        ;;
+        -u | --upload )
+            upload=1
+        ;;
+        -q=* | --quality=* )
+            quality=${1#*=}
+        ;;
+        -t | --temporary)
+            # this option will overwrite --path
+            temporary=1
+        ;;
+        -h | --help )
+            usage
+            exit 1
+        ;;
+        * )
+            usage
+            exit 1
+    esac
+    shift
+done
+
+if [[ $temporary -eq 0 ]]; then
+    # prepare dir
+    mkdir -p "$save_path" > /dev/null 2>&1
+    if [[ ! -d "$save_path" ]]; then
+        echo "Output directory doesn't avaiable"
+        exit 0
+    fi
+else
+    save_path='/tmp'
+fi
+
+
+full_path="${save_path}/Screenshot at $(date '+%Y-%m-%d %H:%M:%S').png"
+if [[ $selection -eq 1 ]]; then
+    scrot -sbz -q ${quality} "$full_path"
+else
+    scrot -z -q ${quality} "$full_path"
+fi
+if [[ $? != 0 ]]; then
+    exit 0
+fi
+if [[ $upload -eq 1 ]]; then
+    upload_imgur "$full_path"
+else
+    notify-send "sscrot" "saved to $full_path"
+fi
+

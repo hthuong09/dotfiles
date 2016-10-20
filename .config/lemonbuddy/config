@@ -1,0 +1,254 @@
+[wm/bspwm]
+reconfigure-workspaces = true
+restack-window = true
+
+[bar/laptop_bar]
+monitor = LVDS1
+width = 100%
+height = 24
+
+background =  #981d1f21
+foreground = #bfbfbf
+linecolor = #5079A0
+
+;separator = |
+
+font-0 = berry:size=8
+font-1 = siji:pixelsize=10
+font-2 = Termsynu:size=8
+
+module-margin-left = 1
+module-margin-right = 2
+
+modules-left = active-workspace workspaces
+modules-center =
+modules-right = mpd2 paupdate volume battery backlight wifi date powermenu
+
+padding-right = 2
+
+[bar/right_bar]
+monitor = HDMI1
+width = 100%
+height = 24
+
+background =  #981d1f21
+foreground = #bfbfbf
+linecolor = #5079A0
+
+;separator = |
+
+font-0 = berry:size=8
+font-1 = siji:pixelsize=10
+;font-2 = Termsynu:size=8
+
+module-margin-left = 1
+module-margin-right = 2
+
+modules-left = active-workspace workspaces
+modules-center =
+modules-right = paupdate volume battery backlight wifi date powermenu
+
+padding-right = 2
+
+[bar/left_bar]
+monitor = LVDS1
+width = 100%
+height = 24
+
+background =  #981d1f21
+foreground = #bfbfbf
+linecolor = #5079A0
+
+;separator = |
+
+font-0 = berry:size=8
+font-1 = siji:pixelsize=10
+font-2 = Termsynu:size=8
+
+module-margin-left = 1
+module-margin-right = 2
+modules-left = active-workspace workspaces
+modules-center =
+modules-right = mpd
+
+padding-right = 2
+
+[module/active-workspace]
+type = custom/script
+exec = ~/.bin/bar/active_workspace
+tail = true
+
+[module/workspaces]
+type = custom/script
+exec = ~/.bin/bar/workspace
+tail = true
+
+[module/date]
+type = internal/date
+interval = 2.0
+date =  %Y-%m-%d   %H:%M
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%
+label-volume-foreground = ${BAR.foreground}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = #666
+
+label-muted = %{F#666}%{F#ccfafafa} %percentage%
+label-muted-foreground = #99
+
+
+[module/battery]
+type = internal/battery
+full-at = 95
+
+battery = BAT0
+adapter = AC0
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = %{F#666}%{F#ccfafafa}  <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = #666
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = #666
+animation-charging-framerate-ms = 750
+
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+label-disconnected = %{F#666}%{F#ccfafafa} disconnected
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = #666
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <ramp> <label>
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = #666
+
+[module/paupdate]
+type = custom/script
+exec = ~/.bin/bar/checkupdates
+tail = true
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 0
+
+label-open = 
+label-close = 
+label-separator = /
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = #005dd9
+menu-0-0-exec = bspc quit -1
+menu-0-1 = Reboot
+menu-0-1-foreground = #005dd9
+menu-0-1-exec = menu-open-1
+menu-0-2 = Power off
+menu-0-2-foreground = #005dd9
+menu-0-2-exec = menu-open-2
+
+menu-1-0 = Cancel
+menu-1-0-foreground = #005dd9
+menu-1-0-exec = menu-open-0
+menu-1-1 = Reboot
+menu-1-1-foreground = #005dd9
+menu-1-1-exec = reboot
+
+menu-2-0 = Power off
+menu-2-0-foreground = #005dd9
+menu-2-0-exec = poweroff
+menu-2-1 = Cancel
+menu-2-1-foreground = #005dd9
+menu-2-1-exec = menu-open-0
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-song>  <label-time>  <bar-progress>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
+format-offline = <label-offline>
+format-offline-foreground = #66
+label-offline = mpd is off
+
+icon-prev = 
+icon-seekb = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+icon-seekf = 
+
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground = #005dd9
+toggle-off-foreground = #66
+
+bar-progress-width = 15
+bar-progress-indicator = 
+bar-progress-indicator-foreground = #bb
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-foreground = #44
+bar-progress-empty-font = 3
+
+label-time-foreground = #55
+
+[module/mpd2]
+type = internal/mpd
+
+format-online = <label-song>  <label-time>  <bar-progress>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-offline = <label-offline>
+format-offline-foreground = #66
+label-offline = mpd is off
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+bar-progress-width = 15
+bar-progress-indicator = 
+bar-progress-indicator-foreground = #bb
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-foreground = #44
+bar-progress-empty-font = 3
+
+label-time-foreground = #55
+
+; vim: ft=dosini

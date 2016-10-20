@@ -1,0 +1,15 @@
+[user]
+	name = Thuong Nguyen
+	email = thuongnguyen.net@gmail.com
+
+[core]
+    editor = 'nvim'
+
+[push]
+    default = matching
+
+[alias]
+    untracked = status -u .
+    untracked-at = status -u
+    ls = ls-files
+    st = status
