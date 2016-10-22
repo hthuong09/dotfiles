@@ -168,19 +168,17 @@ XF86TouchpadToggle
 # Software shortcut
 # file manager
 super + e
-	st  -t "File Manager" -e /bin/sh -c "ranger"
+	termite  -t "File Manager" -e '/bin/sh -c "ranger"'
 # minimal file manager
-ctrl + alt + e
-    st  -c "floating_ranger" -t "File Manager" -e /bin/sh -c "ranger"
+#ctrl + alt + e
+#    st  -c "floating_ranger" -t "File Manager" -e /bin/sh -c "ranger"
 # terminal emulator
 super + Return
-	st
+	termite
 
-super + shift + Return
-	st -name "floating"
+# super + shift + Return
+# 	st -name "floating"
 
-ctrl + alt + t
-	st
 
 ctrl + alt + i
 	google-chrome-stable
