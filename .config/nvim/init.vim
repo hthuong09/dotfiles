@@ -27,10 +27,6 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mattn/emmet-vim'
 
 
-" Status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 " Gits
 " Highlight git modification realtime in file
 Plug 'airblade/vim-gitgutter'
@@ -78,8 +74,12 @@ Plug 'Shougo/unite.vim'
 
 " User Interface (UI should at the end)
 " File tree sidebar
-"Plug 'scrooloose/nerdtree'
-"Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+
+" Status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Better indent highlight
 "Plug 'yggdroot/indentline'
@@ -100,9 +100,9 @@ endif
 " Vim Tweaks {{{
 
 " Enable true color if supported
-if (has("termguicolors"))
-    set termguicolors
-endif
+"if (has("termguicolors"))
+"    set termguicolors
+"endif
 
 " Default encoding - Use UTF-8 without BOM
 set encoding=utf8 nobomb
@@ -152,18 +152,17 @@ colorscheme tender
 
 " Vim Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:airline_left_sep = '▓▒░'
+let g:airline_right_sep = '░▒▓'
 " Fix powerline display weird
 "if !exists('g:airline_symbols')
 "  let g:airline_symbols = {}
 "endif
 "let g:airline_symbols.space = "\ua0"
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = '▓▒░'
+let g:airline#extensions#tabline#left_alt_sep = '▒'
 
 " GitGutter
 let g:gitgutter_enabled = 1
@@ -225,7 +224,7 @@ inoremap <C-q> <Esc>:q<CR>
 
 " Close buffer
 nnoremap <leader>q :bp<cr>:bd #<cr>
-nnoremap <C-w> :bp<cr>:bd #<cr>
+" nnoremap <C-w> :bp<cr>:bd #<cr>
 nnoremap <leader>Q :bp<cr>:bd! #<cr>
 " Switching buffers
 nnoremap <C-l> <Esc>:bnext<CR>
