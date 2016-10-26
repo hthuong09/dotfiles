@@ -12,7 +12,7 @@ import os
 class AniChart_Airing():
     def __init__(self):
         self.API_URL = 'http://anichart.net/api/chart/airing'
-        
+
     def fetch_data(self):
         request = requests.get(self.API_URL)
         return request.json()
@@ -168,7 +168,7 @@ def main():
 
     args = parser.parse_args()
     anichart = AniChart_Airing()
-    
+
     limit_day = 0 if args.limit == False else 7
     if args.today:
         args.date = arrow.now().weekday()

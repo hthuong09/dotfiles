@@ -110,9 +110,9 @@ now_playing_prefix = $b
 now_playing_suffix = $/b
 # Bars
 song_status_format = "{%t - %a}|{%f}"
-#progressbar_look = "─  "
 progressbar_look = "─╼─"
-titles_visibility = "no"
+header_visibility = no
+titles_visibility = yes
 display_bitrate = yes
 
 

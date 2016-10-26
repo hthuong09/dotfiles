@@ -84,6 +84,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Better indent highlight
 "Plug 'yggdroot/indentline'
 
+" Highlight trailing
+" Plug 'KuoE0/vim-janitor'
+Plug 'ntpeters/vim-better-whitespace'
+
 " Icons
 "Plug 'ryanoasis/vim-devicons'
 
@@ -153,7 +157,7 @@ colorscheme tender
 " Vim Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'tender'
 let g:airline_left_sep = '▓▒░'
 let g:airline_right_sep = '░▒▓'
 " Fix powerline display weird

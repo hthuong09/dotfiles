@@ -168,7 +168,7 @@ XF86TouchpadToggle
 # Software shortcut
 # file manager
 super + e
-	urxvt  -t "File Manager" -e '/bin/sh -c "ranger"'
+	urxvt  -t "File Manager" -e /bin/sh -c "ranger"
 # minimal file manager
 #ctrl + alt + e
 #    st  -c "floating_ranger" -t "File Manager" -e /bin/sh -c "ranger"
