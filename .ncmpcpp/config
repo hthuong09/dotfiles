@@ -1,10 +1,3 @@
-# Music visualizer
-visualizer_fifo_path = "/tmp/mpd.fifo"
-visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "30"
-visualizer_in_stereo = "yes"
-visualizer_type = "spectrum" (spectrum/wave)
-visualizer_look = "+│"
 
 # Song format
 # Available placeholders for song formats:
@@ -69,6 +62,9 @@ visualizer_look = "+│"
 # Note: colors can be nested.
 #
 
+
+# Column layout format {{{
+
 # Column settings
 
 # Syntax of song columns list format is "column column etc."
@@ -103,24 +99,79 @@ visualizer_look = "+│"
 #   creates column named "Owner" that tries to display artist
 #   tag and then composer and performter if previous ones are
 #   not available.
-#
 
-song_columns_list_format = (1f)[red]{} (10f)[white]{l} (20)[white]{a} (40)[white]{f|t} (20)[white]{brE} (1f)[red]{}
+
+song_columns_list_format = (1f)[white]{} (10f)[red]{l} (20)[green]{a} (40)[cyan]{t|f} (20)[yellow]{brE} (1f)[white]{}
 now_playing_prefix = $b
 now_playing_suffix = $/b
-# Bars
-song_status_format = "{%t - %a}|{%f}"
-progressbar_look = "─╼─"
-header_visibility = no
-titles_visibility = yes
+
+# }}}
+
+# Status bar {{{
+
+# Process status bar
+progressbar_look = "─╼╌"
+
+# Current playing song
+song_status_format = "{{{$3%a$9}} $8◦$9 {$7%t$9}|{$7%f$9}{ $8◦$9 $4%b$9{ $8◦$9 $6%y$9}}}"
+
+# Song bitrate
 display_bitrate = yes
 
+# }}}
 
-browser_display_mode = columns
+# Layout settings {{{
+
 playlist_display_mode = columns
+browser_display_mode = columns
 search_engine_display_mode = columns
 playlist_editor_display_mode = classic
 
+header_visibility = no
+titles_visibility = yes
+# statusbar_visibility = yes
+
 # Available values: help, playlist, browser, search_engine,
 # media_library, playlist_editor, tag_editor, outputs, visualizer, clock
+# switch with TAB
 screen_switcher_mode = playlist,browser,media_library,visualizer,clock
+
+# }}}
+
+# Visualizer {{{
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum" (spectrum/wave)
+visualizer_look = "+│"
+
+# }}}
+
+# Colors {{{
+
+# Visualizer colors
+#visualizer_color = blue, cyan, green, yellow, magenta, red
+#visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
+
+colors_enabled = yes
+discard_colors_if_item_is_selected = yes
+#empty_tag_color = cyan
+#header_window_color = default
+#volume_color = default
+#state_line_color = default
+#state_flags_color = default
+#color1 = white
+#color2 = green
+main_window_color = magenta
+main_window_highlight_color = yellow
+progressbar_color = white
+progressbar_elapsed_color = blue
+statusbar_color = blue
+#alternative_ui_separator_color = black
+#active_column_color = red
+#window_border_color = green
+#active_window_border = red
+
+# }}}
