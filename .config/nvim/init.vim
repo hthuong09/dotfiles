@@ -57,6 +57,8 @@ Plug 'Shougo/neopairs.vim'
 " Auto close html tag
 Plug 'alvan/vim-closetag'
 
+Plug 'tpope/vim-unimpaired'
+
 
 " Linter
 Plug 'scrooloose/syntastic'
