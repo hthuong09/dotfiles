@@ -13,6 +13,6 @@ git clone --recursive --separate-git-dir=$HOME/.gdots https://bitbucket.org/hthu
 # -v, --verbose               increase verbosity
 # -l, --links                 When symlinks are encountered, recreate the symlink on the destination.
 rsync -rvl --exclude ".git" /tmp/dots/ $HOME/
-rm -r /tmp/dots
+rm -rf /tmp/dots
 dots submodule update --init --recursive $HOME/
 ```
