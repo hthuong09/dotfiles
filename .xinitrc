@@ -30,6 +30,8 @@ if xrandr | grep "HDMI1 connected"; then
     xrandr --output HDMI1 --mode 1920x1080 --right-of LVDS1
 fi
 
+#setxkbmap -option ctrl:nocaps
+
 session=${1:-xfce}
 case $session in
     awesome           ) exec awesome;;
