@@ -8,7 +8,7 @@ bspc monitor HDMI1 -d code media etc
 bspc config -m ^1 border_width  2
 bspc config -m ^2 border_width  2
 
-bspc config window_gap          12
+bspc config window_gap          8
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
@@ -36,3 +36,4 @@ feh --no-xinerama --bg-fill ~/.wallpapers/haruka_yukiho.jpg
 toggle-touchpad
 bars
 compton &
+xautolock -detectsleep -time 5 -locker "$HOME/.bin/lock/lock" &

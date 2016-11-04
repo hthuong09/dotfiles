@@ -185,7 +185,7 @@ ctrl + alt + i
 
 # lockscreen
 super + shift + @l
-	~/.dotfiles/lock/lock
+	~/.bin/lock/lock
 
 # screenshot
 

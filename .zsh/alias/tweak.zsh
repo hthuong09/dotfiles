@@ -22,6 +22,9 @@ alias ping='ping -c 5'
 # fast clear screen
 alias c='clear'
 
+# sudo pacman
+alias pacman='sudo pacman'
+
 # show colour list
 showcolours() {
     for i in {0..255} ; do

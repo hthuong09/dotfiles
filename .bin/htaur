@@ -1,0 +1,33 @@
+#!/usr/bin/zsh
+
+if [[ -z $1 ]]; then
+    echo "Please enter package name"
+    exit 1
+fi
+
+clean_up() {
+    echo "Cleaning up temporary folder..."
+    rm -rf $TMP > /dev/null 2>&1
+}
+
+TMP="/tmp/$USER/$1-htaur"
+GITHUB_PATH="https://raw.githubusercontent.com/hthuong09/PKGBUILD/master/$1/PKGBUILD"
+
+# -f - return error to console instead of print output
+# -L - follow location
+# -o - output file
+if ! curl --create-dirs -fLo "$TMP/PKGBUILD" $GITHUB_PATH > /dev/null 2>&1; then
+    echo "Package doesn't exist"
+    clean_up
+    exit 1
+fi
+cd $TMP
+if ! makepkg -si; then
+    echo "Installed successfully"
+    clean_up
+    exit 0
+else
+    echo "Failed to install $1"
+    exit 1
+fi
+

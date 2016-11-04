@@ -31,6 +31,7 @@ if xrandr | grep "HDMI1 connected"; then
 fi
 
 #setxkbmap -option ctrl:nocaps
+setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
 
 session=${1:-xfce}
 case $session in
