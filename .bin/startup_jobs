@@ -1,8 +1,38 @@
 #!/bin/zsh
 
-if hash acdcli 2>/dev/null; then
-    echo "Mount Amazon Cloud Drive..."
+
+echo "Starting..."
+sleep 5
+# Mounting Amazon Drive {{{
+if hash acdcli 2>/dev/null && ! mountpoint -q ~/storage/acd; then
+    echo "Mounting Amazon Cloud Drive..."
     acdcli mount ~/storage/acd > /dev/null 2>&1
-    echo "Sync ACD database"
+    echo "Syncing ACD database..."
     acdcli sync > /dev/null 2>&1
 fi
+# }}}
+# MPD Daemon {{{
+if ! mpc > /dev/null 2>&1; then
+    echo "Starting MPD deamon..."
+    mpd
+fi
+# }}}
+# Remapping Esc {{{
+if ! pgrep -x xcape > /dev/null 2>&1; then
+    echo "Remapping ESC key..."
+    setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
+fi
+# }}}
+# xautolock {{{
+if ! pgrep -x xautolock > /dev/null 2>&1; then
+    echo "Activing xautolock"
+    xautolock -detectsleep -time 5 -locker "$HOME/.bin/lock/lock" &
+fi
+# }}}
+echo "Done"
+sleep 1
+echo ""
+
+while true; do
+    sleep 10
+done

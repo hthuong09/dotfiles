@@ -36,4 +36,3 @@ feh --no-xinerama --bg-fill ~/.wallpapers/haruka_yukiho.jpg
 toggle-touchpad
 bars
 compton &
-xautolock -detectsleep -time 5 -locker "$HOME/.bin/lock/lock" &

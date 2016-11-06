@@ -46,7 +46,7 @@ module-margin-right = 2
 
 modules-left = active-workspace workspaces
 modules-center =
-modules-right = paupdate volume battery backlight wifi date powermenu
+modules-right = startup-jobs paupdate volume battery backlight wifi date powermenu
 
 padding-right = 2
 
@@ -250,5 +250,11 @@ bar-progress-empty-foreground = #44
 bar-progress-empty-font = 3
 
 label-time-foreground = #55
+
+[module/startup-jobs]
+type = custom/script
+tail = true
+interval = 0
+exec = startup_jobs
 
 ; vim: ft=dosini
