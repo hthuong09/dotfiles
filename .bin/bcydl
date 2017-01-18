@@ -21,6 +21,22 @@ if len(images) == 0:
     print('Could not find any images')
     sys.exit(0)
 
+profile = parser.find("a", class_="maxw180")
+
+
+if profile == None:
+    print('Could not find user profile')
+    sys.exit(0)
+
+cosplayer_name = profile.text
+cosplayer_id = profile['href'].split('/')[-1]
+
+# create gallery information file
+f = open(cosplayer_name + ' - bcy' + cosplayer_id, 'a')
+f.write(url)
+f.close()
+
+
 
 for image in images:
     image_url = '/'.join(image['src'].split('/')[0:-1])

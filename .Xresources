@@ -1,0 +1,168 @@
+! Font settings
+! URxvt.letterSpace: -1
+! URxvt*font: -*-fixed-medium-r-*-*-13-*-*-*-*-60-iso10646-1
+! URxvt*boldFont: -*-fixed-bold-r-*-*-13-*-*-*-*-60-iso10646-1
+
+URxvt*font: xft:boxxy:pixelsize=14
+URxvt*boldFont: xft:boxxy:style=bold:pixelsize=14
+
+! URxvt*font: xft:Terminusmodx:pixelsize=12
+
+! URxvt*font: xft:CtrlD:pixelsize=13
+
+! Transparency
+!URxvt.transparent: true
+!URxvt.shading: 5
+
+!! special
+!*.foreground:   #d8d8d8
+!*.background:   #181818
+!*.cursorColor:  #d8d8d8
+!
+!! black
+!*.color0:       #181818
+!*.color8:       #585858
+!
+!! red
+!*.color1:       #ab4642
+!*.color9:       #ab4642
+!
+!! green
+!*.color2:       #a1b56c
+!*.color10:      #a1b56c
+!
+!! yellow
+!*.color3:       #f7ca88
+!*.color11:      #f7ca88
+!
+!! blue
+!*.color4:       #7cafc2
+!*.color12:      #7cafc2
+!
+!! magenta
+!*.color5:       #ba8baf
+!*.color13:      #ba8baf
+!
+!! cyan
+!*.color6:       #86c1b9
+!*.color14:      #86c1b9
+!
+!! white
+!*.color7:       #d8d8d8
+!*.color15:      #f8f8f8
+
+!
+! invisibone by baskerville
+!
+! vim: set ft=xdefaults:
+
+URxvt.background: #232323
+URxvt.foreground: #A0A0A0
+
+URxvt.colorBD:    #CFCFCF
+URxvt.colorUL:    #A0A0A0
+URxvt.colorIT:    #686868
+
+!BLK
+URxvt.color0:     #303030
+URxvt.color8:     #686868
+
+!RED
+URxvt.color9:     #FFA7DA
+URxvt.color1:     #D370A3
+
+!GRN
+URxvt.color10:    #A3D572
+URxvt.color2:     #6D9E3F
+
+!BLU
+URxvt.color12:    #98CBFE
+URxvt.color4:     #6095C5
+
+!YEL
+URxvt.color11:    #EFBD8B
+URxvt.color3:     #B58858
+
+!CYN
+URxvt.color14:    #75DAA9
+URxvt.color6:     #3BA275
+
+!MAG
+URxvt.color13:    #E5B0FF
+URxvt.color5:     #AC7BDE
+
+!WHT
+URxvt.color7:     #CFCFCF
+URxvt.color15:    #FFFFFF
+
+
+!URxvt.background:               #1b1b1b
+!URxvt.foreground:               #FFFFFF
+!URxvt.colorBD:                  #CFCFCF
+!URxvt.colorUL:                  #969696
+!URxvt.colorIT:                  #686868
+!!Black
+!*color0:                        #3D3D3D
+!*color8:                        #4D4D4D
+!!Red
+!*color1:                        #6673BF
+!*color9:                        #899AFF
+!!Green
+!*color2:                        #3EA290
+!*color10:                       #52AD91
+!!Yellow
+!*color3:                        #B0EAD9
+!*color11:                       #98C9BB
+!!Blue
+!*color4:                        #31658C
+!*color12:                       #477AB3
+!!Magenta
+!*color5:                        #596196
+!*color13:                       #7882BF
+!!Cyan
+!*color6:                        #8292B2
+!*color14:                       #95A7CC
+!!White
+!*color7:                        #C8CACC
+!*color15:                       #EDEFF2
+
+
+URxvt*loginShell: false
+URxvt*scrollBar: false
+URxvt*internalBorder: 10
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! Enables copy/paste with Ctrl-Shift-C/V
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!URxvt.perl-ext-common: default,matcher,clipboard,url-select
+URxvt.perl-ext-common: default,clipboard
+
+URxvt.url-launcher: google-chrome-stable
+URxvt.matcher.button: 1
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+
+URxvt.url-select.launcher: google-chrome-stable
+URxvt.url-select.button:   1
+URxvt.keysym.M-u: perl:url-select:select_next
+
+URxvt.clipboard.copycmd:  xsel --input  --clipboard --primary
+URxvt.clipboard.pastecmd: xsel --output --clipboard --primary
+
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+
+Xcursor.theme: default
+
+URxvt.depth: 32
+URxvt.intensityStyles: false

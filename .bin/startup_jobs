@@ -20,14 +20,15 @@ fi
 # Remapping Esc {{{
 if ! pgrep -x xcape > /dev/null 2>&1; then
     echo "Remapping ESC key..."
-    setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
+    #setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Control_L=Escape' &
+    xcape -e 'Control_L=Escape' &
 fi
 # }}}
 # xautolock {{{
-if ! pgrep -x xautolock > /dev/null 2>&1; then
-    echo "Activing xautolock"
-    xautolock -detectsleep -time 5 -locker "$HOME/.bin/lock/lock" &
-fi
+#if ! pgrep -x xautolock > /dev/null 2>&1; then
+#    echo "Activing xautolock"
+#    xautolock -detectsleep -time 5 -locker "$HOME/.bin/lock/lock" &
+#fi
 # }}}
 echo "Done"
 sleep 1

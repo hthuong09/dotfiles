@@ -3,16 +3,16 @@ which pacman &>/dev/null || return 1
 which yaourt &>/dev/null || return 1
 
 # Sync db
-alias psync='sudo pacman -Sy'
-
-# Sync db and pgrade pacman package
-alias pupgrade='sudo pacman -Syu'
-
-# Upgrade yaourt package
-alias yupgrade='yaourt -Syua --noconfirm'
-
-# Upgrade both pacman and yaourt
-alias fupgrade='pupgrade && yupgrade'
+#alias psync='sudo pacman -Sy'
+#
+## Sync db and pgrade pacman package
+#alias pupgrade='sudo pacman -Syu'
+#
+## Upgrade yaourt package
+#alias yupgrade='yaourt -Syua --noconfirm'
+#
+## Upgrade both pacman and yaourt
+#alias fupgrade='pupgrade && yupgrade'
 
 # Automatic detect and choose to use pacman or yaourt to install
 pinstall() {

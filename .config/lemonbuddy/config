@@ -86,7 +86,7 @@ tail = true
 [module/date]
 type = internal/date
 interval = 2.0
-date =  %Y-%m-%d   %H:%M
+date = %%{A1:gsimplecal &:}%%{A3:killall gsimplecal:} %Y-%m-%d   %H:%M%%{A}%%{A}
 
 [module/volume]
 type = internal/volume

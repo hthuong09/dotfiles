@@ -14,5 +14,9 @@ case "$instance" in
     floating_ranger)
         echo "floating = on"
         ;;
+    gsimplecal)
+        echo "border=off sticky=on focus=off locked=on"
+        xdotool windowmove $wid 3600 24
+        ;;
 esac
 
