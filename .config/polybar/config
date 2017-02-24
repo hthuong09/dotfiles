@@ -158,12 +158,6 @@ tail = true
 [module/powermenu]
 type = custom/menu
 
-format-padding = 0
-
-label-open = 
-label-close = 
-label-separator = /
-
 menu-0-0 = Terminate WM
 menu-0-0-foreground = #005dd9
 menu-0-0-exec = bspc quit -1
@@ -187,6 +181,8 @@ menu-2-0-exec = poweroff
 menu-2-1 = Cancel
 menu-2-1-foreground = #005dd9
 menu-2-1-exec = menu-open-0
+
+
 
 [module/mpd]
 type = internal/mpd

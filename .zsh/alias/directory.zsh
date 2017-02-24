@@ -12,3 +12,5 @@ alias la='ll -A'
 
 # list all hidden file with long listing format without list implied . and .., page through text one screenful at a time
 alias lm='la | less'
+
+alias l=ls

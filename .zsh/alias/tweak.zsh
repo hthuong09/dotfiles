@@ -84,4 +84,4 @@ mkcd() {
 # # FIND A FILE WITH PATTERN $1 IN NAME AND EXECUTE $2 ON IT {{{
 # fe() { find . -type f -iname '*'$1'*' -exec "${2:-file}" {} \;  ; }
 # # copy with progress bar
-# alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+#alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
