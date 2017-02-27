@@ -1,0 +1,1 @@
+yaourt -S ttf-tw wqy-microhei wqy-zenhei ttf-arphic-ukai ttf-arphic-uming opendesktop-fonts wqy-bitmapfont ttf-hannom otf-ipafont ttf-vlgothic ttf-mplus ttf-monapo ttf-sazanami ttf-baekmuk ttf-unfonts-core ttf-nanum ttf-nanumgothic_coding --noconfirm --needed
