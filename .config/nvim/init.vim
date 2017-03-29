@@ -68,6 +68,7 @@ Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'stanangeloff/php.vim', {'for': 'php'}
+Plug 'digitaltoad/vim-pug'
 
 
 " Others
@@ -114,8 +115,8 @@ endif
 set encoding=utf8 nobomb
 
 " Using soft tab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " Highlight current line
