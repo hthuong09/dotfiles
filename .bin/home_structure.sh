@@ -14,6 +14,7 @@ media           # multimedia
 net             # things from internet
     downloads   # downloaded file from internet
     torrents    # torrent from internet, mostly temporary
+    www         # website dirs
 storage         # storage, contains links to external storage, fuse
     acd         # Amazon Cloud Drive
     data        # HDD
@@ -26,7 +27,7 @@ weeb            # Weeboo things
         series  # TV series
     anisong     # Song from anime, j-pop
     manga       # manga
-    
+
 explain
 
-mkdir -p ~/{bin,code,docs,etc/{conf,vm},media/{musics,pictures,videos},net/{downloads,torrents},storage/{acd,data,gd},weeb/{amv,anime/{movie,series},anisong,manga},tmp}
+mkdir -p ~/{bin,code,docs,etc/{conf,vm},media/{musics,pictures,videos},net/{downloads,torrents,www},storage/{acd,data,gd},weeb/{amv,anime/{movie,series},anisong,manga},tmp}
