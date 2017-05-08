@@ -145,6 +145,9 @@ set noswapfile
 " Folding
 set foldmethod=marker
 
+set list
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,eol:¬
+
 " }}}
 
 " Plugin Settings {{{
@@ -255,4 +258,5 @@ inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr><Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 
 " }}}
+
 
