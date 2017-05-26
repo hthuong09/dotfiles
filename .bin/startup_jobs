@@ -21,7 +21,7 @@ fi
 if ! pgrep -x xcape > /dev/null 2>&1; then
     echo "Remapping ESC key..."
     #setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Control_L=Escape' &
-    xcape -e 'Control_L=Escape' &
+    #xcape -e 'Control_L=Escape' &
 fi
 # }}}
 # xautolock {{{

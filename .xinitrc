@@ -27,7 +27,7 @@ fi
 #[ -f ~/.auto_start ] && source ~/.auto_start
 xsetroot -cursor_name left_ptr
 if xrandr | grep "HDMI1 connected"; then
-    xrandr --output HDMI1 --mode 1920x1080 --right-of LVDS1
+    xrandr --output HDMI1 --mode 1920x1080 --left-of LVDS1
 fi
 
 #setxkbmap -option ctrl:nocaps

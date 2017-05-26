@@ -2,8 +2,8 @@
 
 bspc config external_rules_command "$(dirname $0)/external_rules"
 
-bspc monitor LVDS1 -d home term web
 bspc monitor HDMI1 -d code media etc
+bspc monitor LVDS1 -d home term web
 
 bspc config -m ^1 border_width  2
 bspc config -m ^2 border_width  2
