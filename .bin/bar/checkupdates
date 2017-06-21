@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 while true; do
-    echo -e "\ue0aa 0"
+    echo -e "%{F$1}\ue0aa%{F-} 0"
     available_packages=$(checkupdates | wc -l)
-    echo -e "\ue0aa $available_packages"
+    echo -e "%{F$1}\ue0aa%{F-} $available_packages"
     sleep 1800 # sleep 30mins
 done

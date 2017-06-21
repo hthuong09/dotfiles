@@ -166,3 +166,7 @@ Xcursor.theme: default
 
 URxvt.depth: 32
 URxvt.intensityStyles: false
+
+
+URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
