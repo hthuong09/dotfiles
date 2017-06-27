@@ -14,8 +14,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Colorscheme
-Plug 'jacoborus/tender.vim'
-
+Plug 'chriskempson/base16-vim'
 
 " Vim Helpers
 " Asynchronous execution library
@@ -32,7 +31,7 @@ Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 
 " Git wrapper
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 
 
 " Auto fills
@@ -55,7 +54,7 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'Shougo/neopairs.vim'
 
 " Auto close html tag
-Plug 'alvan/vim-closetag'
+"Plug 'alvan/vim-closetag'
 
 Plug 'tpope/vim-unimpaired'
 
@@ -69,16 +68,20 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'stanangeloff/php.vim', {'for': 'php'}
 Plug 'digitaltoad/vim-pug'
+Plug 'jwalton512/vim-blade'
 
 
 " Others
 Plug 'Shougo/unite.vim'
 "Plug 'equalsraf/neovim-gui-shim'
+Plug 'tpope/vim-surround'
+
 
 " User Interface (UI should at the end)
 " File tree sidebar
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'junegunn/limelight.vim'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -107,9 +110,9 @@ endif
 " Vim Tweaks {{{
 
 " Enable true color if supported
-"if (has("termguicolors"))
-"    set termguicolors
-"endif
+if (has("termguicolors"))
+    set termguicolors
+endif
 
 " Default encoding - Use UTF-8 without BOM
 set encoding=utf8 nobomb
@@ -154,7 +157,8 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,eol:¬
 
 " Colorscheme
 syntax enable
-colorscheme tender
+let base16colorspace=256
+colorscheme base16-tomorrow-night
 
 " NerdTREE
 " let g:nerdtree_tabs_open_on_console_startup = 1
@@ -163,7 +167,7 @@ colorscheme tender
 " Vim Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tender'
+let g:airline_theme = 'base16'
 let g:airline_left_sep = '▓▒░'
 let g:airline_right_sep = '░▒▓'
 " Fix powerline display weird
