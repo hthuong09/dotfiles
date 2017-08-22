@@ -174,10 +174,10 @@ super + e
 #    st  -c "floating_ranger" -t "File Manager" -e /bin/sh -c "ranger"
 # terminal emulator
 super + Return
-	urxvt
+	term
 
-# super + shift + Return
-# 	st -name "floating"
+ super + shift + Return
+ term2
 
 
 ctrl + alt + i
