@@ -69,6 +69,7 @@ Plug 'mxw/vim-jsx'
 Plug 'stanangeloff/php.vim', {'for': 'php'}
 Plug 'digitaltoad/vim-pug'
 Plug 'jwalton512/vim-blade'
+Plug 'posva/vim-vue'
 
 
 " Others
@@ -157,7 +158,6 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,eol:¬
 
 " Colorscheme
 syntax enable
-let base16colorspace=256
 colorscheme base16-tomorrow-night
 
 " NerdTREE
@@ -195,9 +195,9 @@ let g:deoplete#auto_complete_delay = 300
 "let g:tern_request_timeout = 1
 "let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
 let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.php = 'phpcomplete#CompletePHP'
+"let g:deoplete#omni#functions.php = 'phpcomplete#CompletePHP'
 let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
+"let g:deoplete#omni#input_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
 
 " vim-devicons
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1

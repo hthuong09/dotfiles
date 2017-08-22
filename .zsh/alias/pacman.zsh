@@ -3,19 +3,19 @@ which pacman &>/dev/null || return 1
 which yaourt &>/dev/null || return 1
 
 # Sync db
-#alias psync='sudo pacman -Sy'
+alias psync='sudo pacman -Sy'
 #
 ## Sync db and pgrade pacman package
-#alias pupgrade='sudo pacman -Syu'
+alias pupgrade='sudo pacman -Syu'
 #
 ## Upgrade yaourt package
-#alias yupgrade='yaourt -Syua --noconfirm'
+alias yupgrade='yaourt -Syua --noconfirm'
 #
 ## Upgrade both pacman and yaourt
-#alias fupgrade='pupgrade && yupgrade'
+alias fupgrade='pupgrade && yupgrade'
 
 # Automatic detect and choose to use pacman or yaourt to install
-pinstall() {
+pi() {
     # Print usage when no parameter was given
     if [[ -z $1 ]]; then
         echo "Usage: pinstall <package name>"
@@ -37,7 +37,7 @@ pinstall() {
 }
 
 # Remove package
-alias premove='sudo pacman -Rcsn'
+alias pr='sudo pacman -R'
 
 # Remove package and its unneeded dependencies
-alias puninstall='sudo pacman -Rcsn'
+alias pu='sudo pacman -Rsnc'

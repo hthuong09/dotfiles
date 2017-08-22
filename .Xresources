@@ -3,8 +3,10 @@
 ! URxvt*font: -*-fixed-medium-r-*-*-13-*-*-*-*-60-iso10646-1
 ! URxvt*boldFont: -*-fixed-bold-r-*-*-13-*-*-*-*-60-iso10646-1
 
-URxvt*font: xft:boxxy:pixelsize=14
-URxvt*boldFont: xft:boxxy:style=bold:pixelsize=14
+URxvt*font: xft:Inconsolata-g:pixelsize=14
+
+!URxvt*font: xft:boxxy:pixelsize=14
+!URxvt*boldFont: xft:boxxy:style=bold:pixelsize=14
 
 ! URxvt*font: xft:Terminusmodx:pixelsize=12
 

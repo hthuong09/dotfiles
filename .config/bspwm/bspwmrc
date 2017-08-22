@@ -41,3 +41,4 @@ feh --bg-fill ~/.wallpapers/wall.png
 toggle-touchpad
 bars
 compton &
+nm-applet &

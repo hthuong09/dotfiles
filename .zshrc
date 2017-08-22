@@ -15,7 +15,7 @@ ZSH_MODULES=(
     prompt
     alias
     syntax-highlighting
-    tmux
+#    tmux
 )
 for module in $ZSH_MODULES; do
     # Check if module directory exist before loading *.zsh files

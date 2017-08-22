@@ -71,7 +71,7 @@ elif; then
 fi
 
 # Backup a file
-backup() { cp "$1"{,.bak};}
+backup() { cp -r "$1"{,.bak};}
 
 # Create new folder and change working directory to new created directory
 mkcd() {
