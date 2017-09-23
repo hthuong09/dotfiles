@@ -76,6 +76,7 @@ Plug 'posva/vim-vue'
 Plug 'Shougo/unite.vim'
 "Plug 'equalsraf/neovim-gui-shim'
 Plug 'tpope/vim-surround'
+Plug 'wakatime/vim-wakatime'
 
 
 " User Interface (UI should at the end)
