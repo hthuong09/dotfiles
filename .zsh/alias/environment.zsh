@@ -25,18 +25,35 @@ else
     export EDITOR="nano"
 fi
 
+NODE_PACKAGES_PATH=~/.node-packages
+
+node_packages_preparing() {
+  NODE_PACKAGES_PATH=$1
+  NODE_PACKAGES_BIN_PATH=$1/bin
+
+  if [ ! -d $NODE_PACKAGES_PATH ]; then
+      mkdir $NODE_PACKAGES_PATH
+  fi
+
+  if [[ $PATH != *"$NODE_PACKAGES_BIN_PATH"* ]]; then
+    export PATH=$NODE_PACKAGES_BIN_PATH:$PATH
+  fi
+
+}
+
 # npm global without root
 if hash npm 2>/dev/null; then
-    if [ ! -d "$HOME/.npm-global" ]; then
-        mkdir ~/.npm-global
-    fi
+    node_packages_preparing $NODE_PACKAGES_PATH
 
-    export NPM_CONFIG_PREFIX=~/.npm-global
-    export PATH=~/.npm-global/bin:$PATH
+    export NPM_CONFIG_PREFIX=$NODE_PACKAGES_PATH
 fi
 
 # Yarn package manager
 if hash yarn 2>/dev/null; then
-    export PATH=~/.yarn/bin:$PATH
+  node_packages_preparing $NODE_PACKAGES_PATH
+
+  if [[ $(yarn config get prefix) != $NODE_PACKAGES_PATH ]]; then
+    yarn config set prefix $NODE_PACKAGES_PATH > /dev/null
+  fi
 fi
 
