@@ -31,7 +31,7 @@ if hash npm 2>/dev/null; then
         mkdir ~/.npm-global
     fi
 
-    NPM_CONFIG_PREFIX=~/.npm-global
+    export NPM_CONFIG_PREFIX=~/.npm-global
     export PATH=~/.npm-global/bin:$PATH
 fi
 
