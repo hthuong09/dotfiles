@@ -47,13 +47,6 @@ get_yarn_prefix_path() {
   echo $(cat $yarnrc | grep -oP '(?<=prefix ").*(?=")')
 }
 
-# npm global without root
-if hash npm 2>/dev/null; then
-    node_packages_preparing $NODE_PACKAGES_PATH
-
-    export NPM_CONFIG_PREFIX=$NODE_PACKAGES_PATH
-fi
-
 # arn package manager
 if hash yarn 2>/dev/null; then
   node_packages_preparing $NODE_PACKAGES_PATH
