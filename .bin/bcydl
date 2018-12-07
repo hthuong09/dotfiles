@@ -1,6 +1,7 @@
 #!/bin/env python
 
 import sys
+import os
 import requests
 from bs4 import BeautifulSoup
 
@@ -14,6 +15,8 @@ url = sys.argv[1];
 html = requests.get(url).text
 
 parser = BeautifulSoup(html, 'html.parser')
+
+title = parser.find("h1", class_="js-post-title")
 
 images = parser.find_all("img", class_="detail_std")
 
@@ -30,6 +33,12 @@ if profile == None:
 
 cosplayer_name = profile.text
 cosplayer_id = profile['href'].split('/')[-1]
+
+directory = title.text.strip()
+
+if not os.path.isdir(directory):
+    os.mkdir(directory)
+os.chdir(directory)
 
 # create gallery information file
 f = open(cosplayer_name + ' - bcy' + cosplayer_id, 'a')

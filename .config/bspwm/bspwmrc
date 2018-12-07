@@ -37,7 +37,8 @@ bspc rule -a URxvt:mpd_cava state=floating sticky=on
 bspc rule -a Conky desktop=home state=floating sticky=off border=off layer=below private=on
 
 
-feh --bg-fill ~/.wallpapers/wall.png
+feh --bg-fill ~/net/downloads/DSC_0566.JPG
+#xwinwrap -ov -ni -g 1920x1080 -- mpv -wid WID --keepaspect=no --loop ~/.wallpapers/raining.mp4 &
 toggle-touchpad
 bars
 compton &

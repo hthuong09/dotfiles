@@ -52,6 +52,9 @@ set noswapfile
 set splitbelow
 set splitright
 
+" Line height
+set linespace=3
+
 " Folding
 set foldmethod=marker
 

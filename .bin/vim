@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if hash nvim 2>/dev/null; then
-    nvim $@
-else
-    nano $@
-fi

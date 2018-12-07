@@ -43,7 +43,7 @@ Plug 'heavenshell/vim-jsdoc'
 " }}}
 
 
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 
 " Vim Helpers
 " Asynchronous execution library
